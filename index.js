@@ -41,8 +41,42 @@ class Airplane {
 */
 
 class Person {
+  constructor(name, age){
+   this.name = name;
+   this.age = age;
+   this.stomach = [];  
+  }
+  eat(someFood){
+    if(this.stomach.length < 10){
+  
+      return this.stomach.push(someFood);
+  }
+  }
 
+  poop(){
+    this.stomach = [];
+  }  
+
+  toString(){
+    return `${this.name}, ${this.age}`;
+  }
 }
+
+const personOne = new Person("Vanellope", 9);
+
+console.log(personOne);
+
+personOne.eat("Jelly Beans");
+personOne.eat("Lemon Tarts");
+personOne.eat("Banana Cream Pie");
+console.log(personOne.stomach);
+console.log(personOne);
+
+personOne.poop();
+console.log(personOne);
+
+console.log(personOne.toString());
+
 
 /*
   TASK 2
@@ -59,8 +93,38 @@ class Person {
 */
 
 class Car {
-
+  constructor(model, milesPerGallon){
+    this.model = model;
+    this.milesPerGallon = milesPerGallon;
+    this.tank = 0;
+    this.odometer = 0;
+  }
+  fill(gallons){
+    this.tank += gallons;
+  } 
+  drive(distance){
+    this.odometer += distance;
+    let availableMiles = this.milesPerGallon * this.tank;
+    if(availableMiles >= this.odometer){
+      const newAvailableMiles = availableMiles - this.odometer;
+      this.tank = newAvailableMiles / this.milesPerGallon;
+      return this.tank;
+    }else if(availableMiles < this.odometer){
+      this.tank = 0;
+      this.odometer --;
+      return `I ran out of fuel at ${this.odometer} miles!`;
+    }
+  }
 }
+
+const carOne = new Car("Subaru", 27);
+carOne.fill(9);
+console.log(carOne);
+
+
+
+
+
 
 /*
   TASK 3
